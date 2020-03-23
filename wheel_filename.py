@@ -1,3 +1,15 @@
+"""
+Parse wheel filenames
+
+Visit <https://github.com/jwodder/wheel-filename> for more information.
+"""
+
+__version__      = '1.0.0.dev1'
+__author__       = 'John Thorvald Wodder II'
+__author_email__ = 'wheel-filename@varonathe.org'
+__license__      = 'MIT'
+__url__          = 'https://github.com/jwodder/wheel-filename'
+
 import re
 import attr
 
