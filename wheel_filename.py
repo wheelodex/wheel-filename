@@ -1,6 +1,12 @@
 """
 Parse wheel filenames
 
+``wheel-filename`` lets you verify `wheel
+<https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
+their component fields.  It adheres strictly to the relevant PEPs, except that
+version components are allowed to contain ``!`` and ``+`` for full PEP 440
+support.
+
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
