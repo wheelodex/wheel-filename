@@ -22,6 +22,7 @@
 `GitHub <https://github.com/jwodder/wheel-filename>`_
 | `PyPI <https://pypi.org/project/wheel-filename/>`_
 | `Issues <https://github.com/jwodder/wheel-filename/issues>`_
+| `Changelog <https://github.com/jwodder/wheel-filename/blob/master/CHANGELOG.md>`_
 
 ``wheel-filename`` lets you verify `wheel
 <https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
