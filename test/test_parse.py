@@ -2,7 +2,7 @@ import pytest
 from   wheel_filename import InvalidFilenameError, ParsedWheelFilename, \
                                 parse_wheel_filename
 
-@pytest.mark.parametrize('filename,parsed', [
+@pytest.mark.parametrize('filename,expected', [
     (
         "astrocats-0.3.2-universal-none-any.whl",
         ParsedWheelFilename(
@@ -281,8 +281,10 @@ from   wheel_filename import InvalidFilenameError, ParsedWheelFilename, \
         ),
     ),
 ])
-def test_parse_wheel_filename(filename, parsed):
-    assert parse_wheel_filename(filename) == parsed
+def test_parse_wheel_filename(filename, expected):
+    parsed = parse_wheel_filename(filename)
+    assert parsed == expected
+    assert str(parsed) == filename
 
 @pytest.mark.parametrize('filename', [
     "arq-0.3-py35+-none-any.whl",
