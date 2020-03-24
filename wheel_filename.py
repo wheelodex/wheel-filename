@@ -10,12 +10,13 @@ support.
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
-__version__      = '1.0.0'
+__version__      = '1.1.0.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'wheel-filename@varonathe.org'
 __license__      = 'MIT'
 __url__          = 'https://github.com/jwodder/wheel-filename'
 
+import os.path
 import re
 import attr
 
@@ -78,10 +79,11 @@ def parse_wheel_filename(filename):
     """
     Parse a wheel filename into its components
 
-    :param str filename: a wheel filename
+    :param str filename: a wheel path or filename
     :rtype: ParsedWheelFilename
     :raises InvalidFilenameError: if the filename is invalid
     """
+    filename = os.path.basename(filename)
     m = WHEEL_FILENAME_CRGX.fullmatch(filename)
     if not m:
         raise InvalidFilenameError(filename)

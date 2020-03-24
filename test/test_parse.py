@@ -1,3 +1,4 @@
+import os.path
 import pytest
 from   wheel_filename import InvalidFilenameError, ParsedWheelFilename, \
                                 parse_wheel_filename
@@ -286,6 +287,18 @@ def test_parse_wheel_filename(filename, expected):
     assert parsed == expected
     assert str(parsed) == filename
 
+def test_parse_wheel_filename_path():
+    parsed = parse_wheel_filename('dist/foo-1.0-py3-none-any.whl')
+    assert parsed == ParsedWheelFilename(
+        project='foo',
+        version='1.0',
+        build=None,
+        python_tags=['py3'],
+        abi_tags=['none'],
+        platform_tags=['any'],
+    )
+    assert str(parsed) == 'foo-1.0-py3-none-any.whl'
+
 @pytest.mark.parametrize('filename', [
     "arq-0.3-py35+-none-any.whl",
     "azure_iothub_service_client-1.1.0.0-py2-win32.whl",
@@ -301,3 +314,9 @@ def test_bad_filename(filename):
         parse_wheel_filename(filename)
     assert excinfo.value.filename == filename
     assert str(excinfo.value) == 'Invalid wheel filename: ' + repr(filename)
+
+def test_bad_path():
+    with pytest.raises(InvalidFilenameError) as excinfo:
+        parse_wheel_filename(os.path.join('dist', 'foo-0.1.whl'))
+    assert excinfo.value.filename == 'foo-0.1.whl'
+    assert str(excinfo.value) == "Invalid wheel filename: 'foo-0.1.whl'"

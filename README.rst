@@ -68,9 +68,9 @@ API
 ===
 
 ``parse_wheel_filename(filename)``
-   Parses a wheel filename (without any directory components) and returns a
-   ``ParsedWheelFilename`` instance.  If the filename is invalid, raises an
-   ``InvalidFilenameError``.
+   Parses a wheel filename and returns a ``ParsedWheelFilename`` instance.  Any
+   leading directory components are stripped from the argument before
+   processing.  If the filename is invalid, raises an ``InvalidFilenameError``.
 
 ``ParsedWheelFilename``
    A class representing the components of a wheel filename.  It has the
