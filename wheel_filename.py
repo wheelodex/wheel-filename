@@ -16,6 +16,12 @@ __author_email__ = 'wheel-filename@varonathe.org'
 __license__      = 'MIT'
 __url__          = 'https://github.com/jwodder/wheel-filename'
 
+__all__ = [
+    'InvalidFilenameError',
+    'ParsedWheelFilename',
+    'parse_wheel_filename',
+]
+
 import os.path
 import re
 import attr
