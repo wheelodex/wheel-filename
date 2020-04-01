@@ -1,5 +1,5 @@
-v1.1.0 (in development)
------------------------
+v1.1.0 (2020-04-01)
+-------------------
 - `parse_wheel_filename()` now strips leading directory components from its
   argument before processing
 
