@@ -3,9 +3,18 @@ Parse wheel filenames
 
 ``wheel-filename`` lets you verify `wheel
 <https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
-their component fields.  It adheres strictly to the relevant PEPs, except that
-version components are allowed to contain ``!`` and ``+`` for full PEP 440
-support.
+their component fields.
+
+This package adheres strictly to the relevant PEPs, with the following
+exceptions:
+
+- Unlike other filename components, version components may contain the
+  characters ``!`` and ``+`` for full PEP 440 support.
+
+- Version components may be any sequence of the relevant set of characters;
+  they are not verified for PEP 440 compliance.
+
+- The ``.whl`` file extension is matched case-insensitively.
 
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
