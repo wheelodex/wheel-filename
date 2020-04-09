@@ -1,3 +1,8 @@
+v1.2.0 (in development)
+-----------------------
+- Changed `ParsedWheelFilename` to a `namedtuple` so that it can be iterated
+  over
+
 v1.1.0 (2020-04-01)
 -------------------
 - `parse_wheel_filename()` now strips leading directory components from its

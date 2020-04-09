@@ -19,7 +19,7 @@ exceptions:
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
-__version__      = '1.1.0'
+__version__      = '1.2.0.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'wheel-filename@varonathe.org'
 __license__      = 'MIT'
@@ -31,9 +31,9 @@ __all__ = [
     'parse_wheel_filename',
 ]
 
+from   collections import namedtuple
 import os.path
 import re
-import attr
 
 # These patterns are interpreted with re.UNICODE in effect, so there's probably
 # some character that matches \d but not \w that needs to be included
@@ -52,21 +52,12 @@ WHEEL_FILENAME_CRGX = re.compile(
     .format(PYTHON_TAG_RGX, ABI_TAG_RGX, PLATFORM_TAG_RGX)
 )
 
-@attr.s
-class ParsedWheelFilename:
-    #: The name of the project distributed by the wheel
-    project       = attr.ib()
-    #: The version of the project distributed by the wheel
-    version       = attr.ib()
-    #: The wheel's build tag (`None` if not defined)
-    build         = attr.ib()
-    #: A `list` of Python tags for the wheel
-    python_tags   = attr.ib()
-    #: A `list` of ABI tags for the wheel
-    abi_tags      = attr.ib()
-    #: A `list` of platform tags for the wheel
-    platform_tags = attr.ib()
-
+class ParsedWheelFilename(
+    namedtuple(
+        'ParsedWheelFilename',
+        'project version build python_tags abi_tags platform_tags',
+    )
+):
     def __str__(self):
         if self.build:
             fmt = '{0.project}-{0.version}-{0.build}-{1}-{2}-{3}.whl'

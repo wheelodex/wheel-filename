@@ -83,7 +83,7 @@ API
    processing.  If the filename is invalid, raises an ``InvalidFilenameError``.
 
 ``ParsedWheelFilename``
-   A class representing the components of a wheel filename.  It has the
+   A namedtuple representing the components of a wheel filename.  It has the
    following attributes and methods:
 
    ``project``
