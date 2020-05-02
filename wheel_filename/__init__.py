@@ -31,9 +31,10 @@ __all__ = [
     'parse_wheel_filename',
 ]
 
-from   collections import namedtuple
+import os
 import os.path
 import re
+from   typing import Iterable, List, NamedTuple, Optional, Union
 
 # These patterns are interpreted with re.UNICODE in effect, so there's probably
 # some character that matches \d but not \w that needs to be included
@@ -52,13 +53,15 @@ WHEEL_FILENAME_CRGX = re.compile(
     .format(PYTHON_TAG_RGX, ABI_TAG_RGX, PLATFORM_TAG_RGX)
 )
 
-class ParsedWheelFilename(
-    namedtuple(
-        'ParsedWheelFilename',
-        'project version build python_tags abi_tags platform_tags',
-    )
-):
-    def __str__(self):
+class ParsedWheelFilename(NamedTuple):
+    project: str
+    version: str
+    build: Optional[str]
+    python_tags: List[str]
+    abi_tags: List[str]
+    platform_tags: List[str]
+
+    def __str__(self) -> str:
         if self.build:
             fmt = '{0.project}-{0.version}-{0.build}-{1}-{2}-{3}.whl'
         else:
@@ -70,7 +73,7 @@ class ParsedWheelFilename(
             '.'.join(self.platform_tags),
         )
 
-    def tag_triples(self):
+    def tag_triples(self) -> Iterable[str]:
         """
         Returns a generator of all simple tag triples formed from the tags in
         the filename
@@ -81,7 +84,7 @@ class ParsedWheelFilename(
                     yield '-'.join([py, abi, plat])
 
 
-def parse_wheel_filename(filename):
+def parse_wheel_filename(filename: Union[str, os.PathLike]) -> ParsedWheelFilename:
     """
     Parse a wheel filename into its components
 
@@ -89,10 +92,10 @@ def parse_wheel_filename(filename):
     :rtype: ParsedWheelFilename
     :raises InvalidFilenameError: if the filename is invalid
     """
-    filename = os.path.basename(filename)
-    m = WHEEL_FILENAME_CRGX.fullmatch(filename)
+    basename = os.path.basename(filename)
+    m = WHEEL_FILENAME_CRGX.fullmatch(basename)
     if not m:
-        raise InvalidFilenameError(filename)
+        raise InvalidFilenameError(basename)
     return ParsedWheelFilename(
         project       = m.group('project'),
         version       = m.group('version'),
@@ -106,9 +109,11 @@ def parse_wheel_filename(filename):
 class InvalidFilenameError(ValueError):
     """ Raised when an invalid wheel filename is encountered """
 
-    def __init__(self, filename):
+    filename: str
+
+    def __init__(self, filename: str) -> None:
         #: The invalid filename
         self.filename = filename
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Invalid wheel filename: ' + repr(self.filename)
