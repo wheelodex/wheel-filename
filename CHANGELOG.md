@@ -1,5 +1,5 @@
-v1.2.0 (in development)
------------------------
+v1.2.0 (2020-07-05)
+-------------------
 - Changed `ParsedWheelFilename` to a `namedtuple` so that it can be iterated
   over
 - Dropped support for Python 3.5
