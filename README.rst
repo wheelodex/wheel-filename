@@ -42,9 +42,9 @@ exceptions:
 
 Installation
 ============
-``wheel-filename`` requires Python 3.5 or higher.  Just use `pip
+``wheel-filename`` requires Python 3.6 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
-``wheel-filename`` and its dependencies::
+``wheel-filename``::
 
     python3 -m pip install wheel-filename
 
@@ -78,39 +78,39 @@ API
 ===
 
 ``parse_wheel_filename(filename)``
-   Parses a wheel filename (a `str` or `os.PathLike`) and returns a
+   Parses a wheel filename (a ``str`` or ``os.PathLike``) and returns a
    ``ParsedWheelFilename`` instance.  Any leading directory components are
-   stripped from the argument before processing.  If the filename is invalid,
-   raises an ``InvalidFilenameError``.
+   stripped from the argument before processing.  If the filename is not a
+   valid wheel filename, raises an ``InvalidFilenameError``.
 
 ``ParsedWheelFilename``
    A namedtuple representing the components of a wheel filename.  It has the
    following attributes and methods:
 
-   ``project``
+   ``project: str``
       The name of the project distributed by the wheel
 
-   ``version``
+   ``version: str``
       The version of the project distributed by the wheel
 
-   ``build``
-      The wheel's build tag (`None` if not defined)
+   ``build: Optional[str]``
+      The wheel's build tag (``None`` if not defined)
 
-   ``python_tags``
+   ``python_tags: List[str]``
       A list of Python tags for the wheel
 
-   ``abi_tags``
+   ``abi_tags: List[str]``
       A list of ABI tags for the wheel
 
-   ``platform_tags``
+   ``platform_tags: List[str]``
       A list of platform tags for the wheel
 
    ``str(pwf)``
       Stringifying a ``ParsedWheelFilename`` returns the original filename
 
-   ``tag_triples()``
-      Returns an iterator of all simple tag triples (as strings) formed from
-      the compatibility tags in the filename
+   ``tag_triples() -> Iterator[str]``
+      Returns an iterator of all simple tag triples formed from the
+      compatibility tags in the filename
 
 ``InvalidFilenameError``
    A subclass of ``ValueError`` raised when an invalid wheel filename is passed
