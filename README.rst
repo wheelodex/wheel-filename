@@ -109,8 +109,8 @@ API
       Stringifying a ``ParsedWheelFilename`` returns the original filename
 
    ``tag_triples()``
-      Returns an iterator of all simple tag triples formed from the
-      compatibility tags in the filename
+      Returns an iterator of all simple tag triples (as strings) formed from
+      the compatibility tags in the filename
 
 ``InvalidFilenameError``
    A subclass of ``ValueError`` raised when an invalid wheel filename is passed
