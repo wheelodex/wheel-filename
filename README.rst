@@ -53,26 +53,24 @@ Installation
 Example
 =======
 
-::
-
-    >>> from wheel_filename import parse_wheel_filename
-    >>> pwf = parse_wheel_filename('pip-18.0-py2.py3-none-any.whl')
-    >>> str(pwf)
-    'pip-18.0-py2.py3-none-any.whl'
-    >>> pwf.project
-    'pip'
-    >>> pwf.version
-    '18.0'
-    >>> pwf.build is None
-    True
-    >>> pwf.python_tags
-    ['py2', 'py3']
-    >>> pwf.abi_tags
-    ['none']
-    >>> pwf.platform_tags
-    ['any']
-    >>> list(pwf.tag_triples())
-    ['py2-none-any', 'py3-none-any']
+>>> from wheel_filename import parse_wheel_filename
+>>> pwf = parse_wheel_filename('pip-18.0-py2.py3-none-any.whl')
+>>> str(pwf)
+'pip-18.0-py2.py3-none-any.whl'
+>>> pwf.project
+'pip'
+>>> pwf.version
+'18.0'
+>>> pwf.build is None
+True
+>>> pwf.python_tags
+['py2', 'py3']
+>>> pwf.abi_tags
+['none']
+>>> pwf.platform_tags
+['any']
+>>> list(pwf.tag_triples())
+['py2-none-any', 'py3-none-any']
 
 
 API
