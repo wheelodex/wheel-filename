@@ -1,19 +1,18 @@
-from unittest.mock  import sentinel
 from wheel_filename import ParsedWheelFilename
 
-def test_pwf_iterable():
+def test_pwf_iterable() -> None:
     pwf = ParsedWheelFilename(
-        project       = sentinel.PROJECT,
-        version       = sentinel.VERSION,
-        build         = sentinel.BUILD,
-        python_tags   = sentinel.PYTAGS,
-        abi_tags      = sentinel.ABI_TAGS,
-        platform_tags = sentinel.PLATFORM_TAGS,
+        project       = "project",
+        version       = "1.2.3",
+        build         = "1",
+        python_tags   = ["py2", "py3"],
+        abi_tags      = ["none"],
+        platform_tags = ["any"],
     )
     project, version, build, pytags, abi_tags, platform_tags = pwf
-    assert project is sentinel.PROJECT
-    assert version is sentinel.VERSION
-    assert build is sentinel.BUILD
-    assert pytags is sentinel.PYTAGS
-    assert abi_tags is sentinel.ABI_TAGS
-    assert platform_tags is sentinel.PLATFORM_TAGS
+    assert project == "project"
+    assert version == "1.2.3"
+    assert build == "1"
+    assert pytags == ["py2", "py3"]
+    assert abi_tags == ["none"]
+    assert platform_tags == ["any"]

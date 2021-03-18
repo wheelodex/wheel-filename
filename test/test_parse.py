@@ -282,12 +282,12 @@ from   wheel_filename import InvalidFilenameError, ParsedWheelFilename, \
         ),
     ),
 ])
-def test_parse_wheel_filename(filename, expected):
+def test_parse_wheel_filename(filename: str, expected: ParsedWheelFilename) -> None:
     parsed = parse_wheel_filename(filename)
     assert parsed == expected
     assert str(parsed) == filename
 
-def test_parse_wheel_filename_path():
+def test_parse_wheel_filename_path() -> None:
     parsed = parse_wheel_filename('dist/foo-1.0-py3-none-any.whl')
     assert parsed == ParsedWheelFilename(
         project='foo',
@@ -309,13 +309,13 @@ def test_parse_wheel_filename_path():
     "nupic-0.0.31-py2-none-macosx-10.9-intel.whl",
     "qcodes_-0.1.0-py3-none-any.whl",
 ])
-def test_bad_filename(filename):
+def test_bad_filename(filename: str) -> None:
     with pytest.raises(InvalidFilenameError) as excinfo:
         parse_wheel_filename(filename)
     assert excinfo.value.filename == filename
-    assert str(excinfo.value) == 'Invalid wheel filename: ' + repr(filename)
+    assert str(excinfo.value) == f'Invalid wheel filename: {filename!r}'
 
-def test_bad_path():
+def test_bad_path() -> None:
     with pytest.raises(InvalidFilenameError) as excinfo:
         parse_wheel_filename(os.path.join('dist', 'foo-0.1.whl'))
     assert excinfo.value.filename == 'foo-0.1.whl'
