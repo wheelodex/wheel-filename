@@ -74,10 +74,10 @@ API
 ===
 
 ``parse_wheel_filename(filename)``
-   Parses a wheel filename (a ``str`` or ``os.PathLike``) and returns a
-   ``ParsedWheelFilename`` instance.  Any leading directory components are
-   stripped from the argument before processing.  If the filename is not a
-   valid wheel filename, raises an ``InvalidFilenameError``.
+   Parses a wheel filename (a ``str``, ``bytes``, or ``os.PathLike``) and
+   returns a ``ParsedWheelFilename`` instance.  Any leading directory
+   components are stripped from the argument before processing.  If the
+   filename is not a valid wheel filename, raises an ``InvalidFilenameError``.
 
 ``ParsedWheelFilename``
    A namedtuple representing the components of a wheel filename.  It has the

@@ -84,15 +84,17 @@ class ParsedWheelFilename(NamedTuple):
                     yield '-'.join([py, abi, plat])
 
 
-def parse_wheel_filename(filename: Union[str, os.PathLike]) -> ParsedWheelFilename:
+def parse_wheel_filename(
+    filename: Union[str, bytes, "os.PathLike[str]", "os.PathLike[bytes]"]
+) -> ParsedWheelFilename:
     """
     Parse a wheel filename into its components
 
-    :param str filename: a wheel path or filename
+    :param path filename: a wheel path or filename
     :rtype: ParsedWheelFilename
     :raises InvalidFilenameError: if the filename is invalid
     """
-    basename = os.path.basename(filename)
+    basename = os.path.basename(os.fsdecode(filename))
     m = WHEEL_FILENAME_CRGX.fullmatch(basename)
     if not m:
         raise InvalidFilenameError(basename)

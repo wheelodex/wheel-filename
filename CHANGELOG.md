@@ -1,6 +1,8 @@
 v1.3.0 (in development)
 -----------------------
 - Support Python 3.9
+- Paths passed to `parse_wheel_filename()` can now be `bytes` or
+  `os.PathLike[bytes]`
 
 v1.2.0 (2020-07-05)
 -------------------
