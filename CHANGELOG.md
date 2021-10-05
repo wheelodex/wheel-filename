@@ -1,3 +1,7 @@
+v1.4.0 (in development)
+-----------------------
+- Support Python 3.10
+
 v1.3.0 (2021-03-18)
 -------------------
 - Support Python 3.9
