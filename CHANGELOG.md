@@ -1,5 +1,5 @@
-v1.4.0 (in development)
------------------------
+v1.4.0 (2022-02-03)
+-------------------
 - Support Python 3.10
 - Added a `wheel-filename` command that outputs wheel filename components as
   JSON
