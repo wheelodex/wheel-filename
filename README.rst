@@ -112,3 +112,32 @@ API
    A subclass of ``ValueError`` raised when an invalid wheel filename is passed
    to ``parse_wheel_filename()``.  It has a ``filename`` attribute containing
    the basename of the invalid filename.
+
+
+Command
+=======
+
+*New in version 1.4.0*
+
+``wheel-filename`` also provides a command of the same name that takes a wheel
+filename (The actual wheel does not have to exist) and outputs the filename
+components as JSON.
+
+Example::
+
+    $ wheel-filename pip-18.0-py2.py3-none-any.whl
+    {
+        "project": "pip",
+        "version": "18.0",
+        "build": null,
+        "python_tags": [
+            "py2",
+            "py3"
+        ],
+        "abi_tags": [
+            "none"
+        ],
+        "platform_tags": [
+            "any"
+        ]
+    }
