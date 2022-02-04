@@ -1,12 +1,10 @@
 import sys
-from _pytest.capture import CaptureFixture
 import pytest
 from wheel_filename.__main__ import main
 
 
 def test_main(
-    capsys: CaptureFixture[str],
-    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
 ) -> None:
     monkeypatch.setattr(
         sys, "argv", ["wheel-filename", "pip-18.0-py2.py3-none-any.whl"]
@@ -33,7 +31,7 @@ def test_main(
     assert err == ""
 
 
-def test_main_error(capsys: CaptureFixture[str]) -> None:
+def test_main_error(capsys: pytest.CaptureFixture[str]) -> None:
     with pytest.raises(SystemExit) as excinfo:
         main(["dist/devtools-0.1-py35,py36-none-any.whl"])
     assert excinfo.value.args == (
