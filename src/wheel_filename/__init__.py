@@ -19,7 +19,7 @@ exceptions:
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
-__version__ = "1.4.0"
+__version__ = "1.4.1.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
@@ -34,7 +34,7 @@ __all__ = [
 import os
 import os.path
 import re
-from typing import Iterable, List, NamedTuple, Optional, Union
+from typing import Iterator, List, NamedTuple, Optional, Union
 
 # These patterns are interpreted with re.UNICODE in effect, so there's probably
 # some character that matches \d but not \w that needs to be included
@@ -73,7 +73,7 @@ class ParsedWheelFilename(NamedTuple):
             ".".join(self.platform_tags),
         )
 
-    def tag_triples(self) -> Iterable[str]:
+    def tag_triples(self) -> Iterator[str]:
         """
         Returns a generator of all simple tag triples formed from the tags in
         the filename
