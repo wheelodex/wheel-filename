@@ -1,5 +1,5 @@
-v1.4.1 (in development)
------------------------
+v1.4.1 (2022-05-31)
+-------------------
 - Refine return type annotation on `ParsedWheelFilename.tag_triples()`
 
 v1.4.0 (2022-02-03)
