@@ -1,3 +1,7 @@
+v1.5.0 (in development)
+-----------------------
+- Drop support for Python 3.6
+
 v1.4.1 (2022-05-31)
 -------------------
 - Refine return type annotation on `ParsedWheelFilename.tag_triples()`

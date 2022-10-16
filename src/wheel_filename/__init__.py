@@ -19,7 +19,7 @@ exceptions:
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
-__version__ = "1.4.1"
+__version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
