@@ -19,6 +19,13 @@ exceptions:
 Visit <https://github.com/jwodder/wheel-filename> for more information.
 """
 
+from __future__ import annotations
+from collections.abc import Iterator
+import os
+import os.path
+import re
+from typing import NamedTuple, Optional
+
 __version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
@@ -30,11 +37,6 @@ __all__ = [
     "ParsedWheelFilename",
     "parse_wheel_filename",
 ]
-
-import os
-import os.path
-import re
-from typing import Iterator, List, NamedTuple, Optional, Union
 
 # These patterns are interpreted with re.UNICODE in effect, so there's probably
 # some character that matches \d but not \w that needs to be included
@@ -57,9 +59,9 @@ class ParsedWheelFilename(NamedTuple):
     project: str
     version: str
     build: Optional[str]
-    python_tags: List[str]
-    abi_tags: List[str]
-    platform_tags: List[str]
+    python_tags: list[str]
+    abi_tags: list[str]
+    platform_tags: list[str]
 
     def __str__(self) -> str:
         if self.build:
@@ -85,7 +87,7 @@ class ParsedWheelFilename(NamedTuple):
 
 
 def parse_wheel_filename(
-    filename: Union[str, bytes, "os.PathLike[str]", "os.PathLike[bytes]"]
+    filename: str | bytes | os.PathLike[str] | os.PathLike[bytes],
 ) -> ParsedWheelFilename:
     """
     Parse a wheel filename into its components

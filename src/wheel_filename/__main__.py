@@ -1,11 +1,12 @@
+from __future__ import annotations
 import argparse
 import json
 import sys
-from typing import List, Optional
+from typing import Optional
 from . import InvalidFilenameError, __version__, parse_wheel_filename
 
 
-def main(argv: Optional[List[str]] = None) -> None:
+def main(argv: Optional[list[str]] = None) -> None:
     parser = argparse.ArgumentParser(description="Parse wheel filename")
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"

@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 import pytest
 from wheel_filename import ParsedWheelFilename
 
@@ -71,5 +71,5 @@ from wheel_filename import ParsedWheelFilename
         ),
     ],
 )
-def test_tag_triples(parsed: ParsedWheelFilename, triples: List[str]) -> None:
+def test_tag_triples(parsed: ParsedWheelFilename, triples: list[str]) -> None:
     assert list(parsed.tag_triples()) == triples
