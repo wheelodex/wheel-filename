@@ -16,7 +16,7 @@ exceptions:
 
 - The ``.whl`` file extension is matched case-insensitively.
 
-Visit <https://github.com/jwodder/wheel-filename> for more information.
+Visit <https://github.com/wheelodex/wheel-filename> for more information.
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ __version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
-__url__ = "https://github.com/jwodder/wheel-filename"
+__url__ = "https://github.com/wheelodex/wheel-filename"
 
 __all__ = [
     "InvalidFilenameError",

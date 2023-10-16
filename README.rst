@@ -3,24 +3,24 @@
     :alt: Project Status: Active — The project has reached a stable, usable
           state and is being actively developed.
 
-.. image:: https://github.com/jwodder/wheel-filename/workflows/Test/badge.svg?branch=master
-    :target: https://github.com/jwodder/wheel-filename/actions?workflow=Test
+.. image:: https://github.com/wheelodex/wheel-filename/workflows/Test/badge.svg?branch=master
+    :target: https://github.com/wheelodex/wheel-filename/actions?workflow=Test
     :alt: CI Status
 
-.. image:: https://codecov.io/gh/jwodder/wheel-filename/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/jwodder/wheel-filename
+.. image:: https://codecov.io/gh/wheelodex/wheel-filename/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/wheelodex/wheel-filename
 
 .. image:: https://img.shields.io/pypi/pyversions/wheel-filename.svg
     :target: https://pypi.org/project/wheel-filename/
 
-.. image:: https://img.shields.io/github/license/jwodder/wheel-filename.svg
+.. image:: https://img.shields.io/github/license/wheelodex/wheel-filename.svg
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
 
-`GitHub <https://github.com/jwodder/wheel-filename>`_
+`GitHub <https://github.com/wheelodex/wheel-filename>`_
 | `PyPI <https://pypi.org/project/wheel-filename/>`_
-| `Issues <https://github.com/jwodder/wheel-filename/issues>`_
-| `Changelog <https://github.com/jwodder/wheel-filename/blob/master/CHANGELOG.md>`_
+| `Issues <https://github.com/wheelodex/wheel-filename/issues>`_
+| `Changelog <https://github.com/wheelodex/wheel-filename/blob/master/CHANGELOG.md>`_
 
 ``wheel-filename`` lets you verify `wheel
 <https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
