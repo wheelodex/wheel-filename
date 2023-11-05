@@ -22,15 +22,13 @@
 | `Issues <https://github.com/wheelodex/wheel-filename/issues>`_
 | `Changelog <https://github.com/wheelodex/wheel-filename/blob/master/CHANGELOG.md>`_
 
-``wheel-filename`` lets you verify `wheel
-<https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
-their component fields.
+``wheel-filename`` lets you verify wheel_ filenames and parse them into their
+component fields.
 
-This package adheres strictly to the relevant PEPs, with the following
-exceptions:
+.. _wheel: https://packaging.python.org/en/latest/specifications
+           /binary-distribution-format/
 
-- Unlike other filename components, version components may contain the
-  characters ``!`` and ``+`` for full PEP 440 support.
+This package adheres strictly to the standard, with the following exceptions:
 
 - Version components may be any sequence of the relevant set of characters;
   they are not verified for PEP 440 compliance.
@@ -41,8 +39,7 @@ exceptions:
 Installation
 ============
 ``wheel-filename`` requires Python 3.7 or higher.  Just use `pip
-<https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
-``wheel-filename``::
+<https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install it::
 
     python3 -m pip install wheel-filename
 

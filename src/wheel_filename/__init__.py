@@ -1,15 +1,13 @@
 """
 Parse wheel filenames
 
-``wheel-filename`` lets you verify `wheel
-<https://www.python.org/dev/peps/pep-0427/>`_ filenames and parse them into
-their component fields.
+``wheel-filename`` lets you verify wheel_ filenames and parse them into their
+component fields.
 
-This package adheres strictly to the relevant PEPs, with the following
-exceptions:
+.. _wheel: https://packaging.python.org/en/latest/specifications
+           /binary-distribution-format/
 
-- Unlike other filename components, version components may contain the
-  characters ``!`` and ``+`` for full PEP 440 support.
+This package adheres strictly to the standard, with the following exceptions:
 
 - Version components may be any sequence of the relevant set of characters;
   they are not verified for PEP 440 compliance.
