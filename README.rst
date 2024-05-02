@@ -40,7 +40,7 @@ This package adheres strictly to the standard, with the following exceptions:
 
 Installation
 ============
-``wheel-filename`` requires Python 3.7 or higher.  Just use `pip
+``wheel-filename`` requires Python 3.8 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install it::
 
     python3 -m pip install wheel-filename
