@@ -4,6 +4,7 @@ import json
 import sys
 from typing import Optional
 from . import InvalidFilenameError, __version__, parse_wheel_filename
+from dataclasses import asdict
 
 
 def main(argv: Optional[list[str]] = None) -> None:
@@ -17,7 +18,7 @@ def main(argv: Optional[list[str]] = None) -> None:
         pwf = parse_wheel_filename(args.filename)
     except InvalidFilenameError as e:
         sys.exit(f"wheel-filename: {e}")
-    print(json.dumps(pwf._asdict(), indent=4))
+    print(json.dumps(asdict(pwf), indent=4))
 
 
 if __name__ == "__main__":

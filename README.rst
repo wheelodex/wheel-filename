@@ -79,7 +79,7 @@ API
    filename is not a valid wheel filename, raises an ``InvalidFilenameError``.
 
 ``ParsedWheelFilename``
-   A namedtuple representing the components of a wheel filename.  It has the
+   A dataclass representing the components of a wheel filename.  It has the
    following attributes and methods:
 
    ``project: str``
