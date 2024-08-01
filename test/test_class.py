@@ -10,10 +10,10 @@ def test_pwf_iterable() -> None:
         abi_tags=["none"],
         platform_tags=["any"],
     )
-    project, version, build, pytags, abi_tags, platform_tags = pwf
-    assert project == "project"
-    assert version == "1.2.3"
-    assert build == "1"
-    assert pytags == ["py2", "py3"]
-    assert abi_tags == ["none"]
-    assert platform_tags == ["any"]
+    
+    assert pwf.project == "project"
+    assert pwf.version == "1.2.3"
+    assert pwf.build == "1"
+    assert pwf.python_tags == ["py2", "py3"]
+    assert pwf.abi_tags == ["none"]
+    assert pwf.platform_tags == ["any"]

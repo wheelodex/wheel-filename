@@ -23,6 +23,7 @@ import os
 import os.path
 import re
 from typing import NamedTuple, Optional
+from dataclasses import dataclass, field, asdict
 
 __version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
@@ -52,14 +53,14 @@ WHEEL_FILENAME_CRGX = re.compile(
     r"\.[Ww][Hh][Ll]".format(PYTHON_TAG_RGX, ABI_TAG_RGX, PLATFORM_TAG_RGX)
 )
 
-
-class ParsedWheelFilename(NamedTuple):
+@dataclass
+class ParsedWheelFilename:
     project: str
     version: str
     build: Optional[str]
-    python_tags: list[str]
-    abi_tags: list[str]
-    platform_tags: list[str]
+    python_tags: list[str] = field(default_factory=list)
+    abi_tags: list[str] = field(default_factory=list)
+    platform_tags: list[str] = field(default_factory=list)
 
     def __str__(self) -> str:
         if self.build:
