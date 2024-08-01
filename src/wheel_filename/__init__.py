@@ -84,6 +84,10 @@ class ParsedWheelFilename:
                 for plat in self.platform_tags:
                     yield "-".join([py, abi, plat])
 
+    def __iter__(self) -> Iterator:
+        fields = [self.project, self.version, self.build, self.python_tags, self.abi_tags, self.platform_tags]
+        return iter(fields)
+
 
 def parse_wheel_filename(
     filename: str | bytes | os.PathLike[str] | os.PathLike[bytes],
