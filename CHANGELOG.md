@@ -1,7 +1,7 @@
 v1.5.0 (in development)
 -----------------------
 - Drop support for Python 3.6 and 3.7
-- Support Python 3.11 and 3.12
+- Support Python 3.11, 3.12, and 3.13
 - Moved to wheelodex organization
 - Migrated from setuptools to hatch
 
