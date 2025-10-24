@@ -35,7 +35,7 @@ def test_main_error(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["dist/devtools-0.1-py35,py36-none-any.whl"]) == 1
     out, err = capsys.readouterr()
     assert out == ""
-    assert (
-        err
-        == "wheel-filename: Invalid wheel filename: 'devtools-0.1-py35,py36-none-any.whl'\n"
+    assert err == (
+        "wheel-filename: Invalid wheel filename:"
+        " 'devtools-0.1-py35,py36-none-any.whl'\n"
     )
