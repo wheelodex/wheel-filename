@@ -6,7 +6,7 @@ from typing import Optional
 from . import InvalidFilenameError, __version__, parse_wheel_filename
 
 
-def main(argv: Optional[list[str]] = None) -> None:
+def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Parse wheel filename")
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"
@@ -16,9 +16,11 @@ def main(argv: Optional[list[str]] = None) -> None:
     try:
         pwf = parse_wheel_filename(args.filename)
     except InvalidFilenameError as e:
-        sys.exit(f"wheel-filename: {e}")
+        print(f"wheel-filename: {e}", file=sys.stderr)
+        return 1
     print(json.dumps(pwf._asdict(), indent=4))
+    return 0
 
 
 if __name__ == "__main__":
-    main()  # pragma: no cover
+    sys.exit(main())  # pragma: no cover
