@@ -116,6 +116,7 @@ class InvalidFilenameError(ValueError):
     def __init__(self, filename: str) -> None:
         #: The invalid filename
         self.filename = filename
+        super().__init__(filename)
 
     def __str__(self) -> str:
         return "Invalid wheel filename: " + repr(self.filename)
