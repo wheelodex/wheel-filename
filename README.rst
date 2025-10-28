@@ -88,16 +88,16 @@ API
    ``version: str``
       The version of the project distributed by the wheel
 
-   ``build: Optional[str]``
+   ``build: str | None``
       The wheel's build tag (``None`` if not defined)
 
-   ``python_tags: List[str]``
+   ``python_tags: list[str]``
       A list of Python tags for the wheel
 
-   ``abi_tags: List[str]``
+   ``abi_tags: list[str]``
       A list of ABI tags for the wheel
 
-   ``platform_tags: List[str]``
+   ``platform_tags: list[str]``
       A list of platform tags for the wheel
 
    ``str(pwf)``
