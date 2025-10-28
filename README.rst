@@ -40,7 +40,7 @@ This package adheres strictly to the standard, with the following exceptions:
 
 Installation
 ============
-``wheel-filename`` requires Python 3.8 or higher.  Just use `pip
+``wheel-filename`` requires Python 3.10 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install it::
 
     python3 -m pip install wheel-filename
@@ -88,16 +88,16 @@ API
    ``version: str``
       The version of the project distributed by the wheel
 
-   ``build: Optional[str]``
+   ``build: str | None``
       The wheel's build tag (``None`` if not defined)
 
-   ``python_tags: List[str]``
+   ``python_tags: list[str]``
       A list of Python tags for the wheel
 
-   ``abi_tags: List[str]``
+   ``abi_tags: list[str]``
       A list of ABI tags for the wheel
 
-   ``platform_tags: List[str]``
+   ``platform_tags: list[str]``
       A list of platform tags for the wheel
 
    ``str(pwf)``
