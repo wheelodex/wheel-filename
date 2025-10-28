@@ -22,7 +22,7 @@ from collections.abc import Iterator
 import os
 import os.path
 import re
-from typing import NamedTuple, Optional
+from typing import NamedTuple
 
 __version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
@@ -56,7 +56,7 @@ WHEEL_FILENAME_CRGX = re.compile(
 class ParsedWheelFilename(NamedTuple):
     project: str
     version: str
-    build: Optional[str]
+    build: str | None
     python_tags: list[str]
     abi_tags: list[str]
     platform_tags: list[str]
