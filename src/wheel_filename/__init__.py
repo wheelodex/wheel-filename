@@ -24,7 +24,7 @@ import os.path
 import re
 from typing import NamedTuple, Optional
 
-__version__ = "1.4.2"
+__version__ = "1.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
