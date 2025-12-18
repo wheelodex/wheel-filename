@@ -74,11 +74,11 @@ API
 
 ``parse_wheel_filename(filename)``
    Parses a wheel filename (a ``str``, ``bytes``, or ``os.PathLike``) and
-   returns a ``ParsedWheelFilename`` instance.  Any leading directory
+   returns a ``WheelFilename`` instance.  Any leading directory
    components are stripped from the argument before processing.  If the
    filename is not a valid wheel filename, raises an ``InvalidFilenameError``.
 
-``ParsedWheelFilename``
+``WheelFilename``
    A dataclass representing the components of a wheel filename.  It has the
    following attributes and methods:
 
@@ -101,7 +101,7 @@ API
       A list of platform tags for the wheel
 
    ``str(pwf)``
-      Stringifying a ``ParsedWheelFilename`` returns the original filename
+      Stringifying a ``WheelFilename`` returns the original filename
 
    ``tag_triples() -> Iterator[str]``
       Returns an iterator of all simple tag triples formed from the

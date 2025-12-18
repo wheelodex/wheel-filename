@@ -1,13 +1,13 @@
 from __future__ import annotations
 import pytest
-from wheel_filename import ParsedWheelFilename
+from wheel_filename import WheelFilename
 
 
 @pytest.mark.parametrize(
     "parsed,triples",
     [
         (
-            ParsedWheelFilename(
+            WheelFilename(
                 project="cvxopt",
                 version="1.2.0",
                 build="001",
@@ -30,7 +30,7 @@ from wheel_filename import ParsedWheelFilename
             ],
         ),
         (
-            ParsedWheelFilename(
+            WheelFilename(
                 project="django_mbrowse",
                 version="0.0.1",
                 build="10",
@@ -41,7 +41,7 @@ from wheel_filename import ParsedWheelFilename
             ["py2-none-any"],
         ),
         (
-            ParsedWheelFilename(
+            WheelFilename(
                 project="line.sep",
                 version="0.2.0.dev1",
                 build=None,
@@ -55,7 +55,7 @@ from wheel_filename import ParsedWheelFilename
             ],
         ),
         (
-            ParsedWheelFilename(
+            WheelFilename(
                 project="PyQt3D",
                 version="5.7.1",
                 build="5.7.1",
@@ -71,5 +71,5 @@ from wheel_filename import ParsedWheelFilename
         ),
     ],
 )
-def test_tag_triples(parsed: ParsedWheelFilename, triples: list[str]) -> None:
+def test_tag_triples(parsed: WheelFilename, triples: list[str]) -> None:
     assert list(parsed.tag_triples()) == triples

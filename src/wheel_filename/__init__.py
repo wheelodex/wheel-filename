@@ -32,7 +32,7 @@ __url__ = "https://github.com/wheelodex/wheel-filename"
 
 __all__ = [
     "InvalidFilenameError",
-    "ParsedWheelFilename",
+    "WheelFilename",
     "parse_wheel_filename",
 ]
 
@@ -54,7 +54,7 @@ WHEEL_FILENAME_CRGX = re.compile(
 
 
 @dataclass
-class ParsedWheelFilename:
+class WheelFilename:
     project: str
     version: str
     build: str | None
@@ -87,19 +87,19 @@ class ParsedWheelFilename:
 
 def parse_wheel_filename(
     filename: str | bytes | os.PathLike[str] | os.PathLike[bytes],
-) -> ParsedWheelFilename:
+) -> WheelFilename:
     """
     Parse a wheel filename into its components
 
     :param path filename: a wheel path or filename
-    :rtype: ParsedWheelFilename
+    :rtype: WheelFilename
     :raises InvalidFilenameError: if the filename is invalid
     """
     basename = os.path.basename(os.fsdecode(filename))
     m = WHEEL_FILENAME_CRGX.fullmatch(basename)
     if not m:
         raise InvalidFilenameError(basename)
-    return ParsedWheelFilename(
+    return WheelFilename(
         project=m.group("project"),
         version=m.group("version"),
         build=m.group("build"),
