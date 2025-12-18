@@ -19,12 +19,12 @@ Visit <https://github.com/wheelodex/wheel-filename> for more information.
 
 from __future__ import annotations
 from collections.abc import Iterator
+from dataclasses import dataclass
 import os
 import os.path
 import re
-from typing import NamedTuple
 
-__version__ = "1.5.0.dev1"
+__version__ = "2.0.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
@@ -53,7 +53,8 @@ WHEEL_FILENAME_CRGX = re.compile(
 )
 
 
-class ParsedWheelFilename(NamedTuple):
+@dataclass
+class ParsedWheelFilename:
     project: str
     version: str
     build: str | None
@@ -110,8 +111,6 @@ def parse_wheel_filename(
 
 class InvalidFilenameError(ValueError):
     """Raised when an invalid wheel filename is encountered"""
-
-    filename: str
 
     def __init__(self, filename: str) -> None:
         #: The invalid filename
