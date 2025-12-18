@@ -49,8 +49,8 @@ Installation
 Example
 =======
 
->>> from wheel_filename import parse_wheel_filename
->>> pwf = parse_wheel_filename('pip-18.0-py2.py3-none-any.whl')
+>>> from wheel_filename import WheelFilename
+>>> pwf = WheelFilename.parse('pip-18.0-py2.py3-none-any.whl')
 >>> str(pwf)
 'pip-18.0-py2.py3-none-any.whl'
 >>> pwf.project
@@ -72,15 +72,16 @@ True
 API
 ===
 
-``parse_wheel_filename(filename)``
-   Parses a wheel filename (a ``str``, ``bytes``, or ``os.PathLike``) and
-   returns a ``WheelFilename`` instance.  Any leading directory
-   components are stripped from the argument before processing.  If the
-   filename is not a valid wheel filename, raises an ``InvalidFilenameError``.
-
 ``WheelFilename``
    A dataclass representing the components of a wheel filename.  It has the
    following attributes and methods:
+
+   ``WheelFilename.parse(filename)``
+      (classmethod) Parses a wheel filename (a ``str``, ``bytes``, or
+      ``os.PathLike``) and returns a ``WheelFilename`` instance.  Any leading
+      directory components are stripped from the argument before processing.
+      If the filename is not a valid wheel filename, raises an
+      ``InvalidFilenameError``.
 
    ``project: str``
       The name of the project distributed by the wheel
@@ -109,7 +110,7 @@ API
 
 ``InvalidFilenameError``
    A subclass of ``ValueError`` raised when an invalid wheel filename is passed
-   to ``parse_wheel_filename()``.  It has a ``filename`` attribute containing
+   to ``WheelFilename.parse()``.  It has a ``filename`` attribute containing
    the basename of the invalid filename.
 
 

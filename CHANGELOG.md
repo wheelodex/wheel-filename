@@ -4,6 +4,7 @@ v2.0.0 (in development)
 - Drop support for Python 3.8 and 3.9
 - Changed `ParsedWheelFilename` from a namedtuple to a dataclass
 - **Breaking**: Renamed `ParsedWheelFilename` to `WheelFilename`
+- **Breaking**: Renamed `parse_wheel_filename()` to `WheelFilename.parse()`
 
 v1.4.2 (2024-12-01)
 -------------------

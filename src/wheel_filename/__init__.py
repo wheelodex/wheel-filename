@@ -33,7 +33,6 @@ __url__ = "https://github.com/wheelodex/wheel-filename"
 __all__ = [
     "InvalidFilenameError",
     "WheelFilename",
-    "parse_wheel_filename",
 ]
 
 # These patterns are interpreted with re.UNICODE in effect, so there's probably
@@ -84,29 +83,30 @@ class WheelFilename:
                 for plat in self.platform_tags:
                     yield "-".join([py, abi, plat])
 
+    @classmethod
+    def parse(
+        cls,
+        filename: str | bytes | os.PathLike[str] | os.PathLike[bytes],
+    ) -> WheelFilename:
+        """
+        Parse a wheel filename into its components
 
-def parse_wheel_filename(
-    filename: str | bytes | os.PathLike[str] | os.PathLike[bytes],
-) -> WheelFilename:
-    """
-    Parse a wheel filename into its components
-
-    :param path filename: a wheel path or filename
-    :rtype: WheelFilename
-    :raises InvalidFilenameError: if the filename is invalid
-    """
-    basename = os.path.basename(os.fsdecode(filename))
-    m = WHEEL_FILENAME_CRGX.fullmatch(basename)
-    if not m:
-        raise InvalidFilenameError(basename)
-    return WheelFilename(
-        project=m.group("project"),
-        version=m.group("version"),
-        build=m.group("build"),
-        python_tags=m.group("python_tags").split("."),
-        abi_tags=m.group("abi_tags").split("."),
-        platform_tags=m.group("platform_tags").split("."),
-    )
+        :param path filename: a wheel path or filename
+        :rtype: WheelFilename
+        :raises InvalidFilenameError: if the filename is invalid
+        """
+        basename = os.path.basename(os.fsdecode(filename))
+        m = WHEEL_FILENAME_CRGX.fullmatch(basename)
+        if not m:
+            raise InvalidFilenameError(basename)
+        return cls(
+            project=m.group("project"),
+            version=m.group("version"),
+            build=m.group("build"),
+            python_tags=m.group("python_tags").split("."),
+            abi_tags=m.group("abi_tags").split("."),
+            platform_tags=m.group("platform_tags").split("."),
+        )
 
 
 class InvalidFilenameError(ValueError):
