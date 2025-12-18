@@ -80,8 +80,7 @@ API
       (classmethod) Parses a wheel filename (a ``str``, ``bytes``, or
       ``os.PathLike``) and returns a ``WheelFilename`` instance.  Any leading
       directory components are stripped from the argument before processing.
-      If the filename is not a valid wheel filename, raises an
-      ``InvalidFilenameError``.
+      If the filename is not a valid wheel filename, raises a ``ParseError``.
 
    ``project: str``
       The name of the project distributed by the wheel
@@ -108,7 +107,7 @@ API
       Returns an iterator of all simple tag triples formed from the
       compatibility tags in the filename
 
-``InvalidFilenameError``
+``ParseError``
    A subclass of ``ValueError`` raised when an invalid wheel filename is passed
    to ``WheelFilename.parse()``.  It has a ``filename`` attribute containing
    the basename of the invalid filename.

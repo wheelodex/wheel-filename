@@ -31,7 +31,7 @@ __license__ = "MIT"
 __url__ = "https://github.com/wheelodex/wheel-filename"
 
 __all__ = [
-    "InvalidFilenameError",
+    "ParseError",
     "WheelFilename",
 ]
 
@@ -93,12 +93,12 @@ class WheelFilename:
 
         :param path filename: a wheel path or filename
         :rtype: WheelFilename
-        :raises InvalidFilenameError: if the filename is invalid
+        :raises ParseError: if the filename is invalid
         """
         basename = os.path.basename(os.fsdecode(filename))
         m = WHEEL_FILENAME_CRGX.fullmatch(basename)
         if not m:
-            raise InvalidFilenameError(basename)
+            raise ParseError(basename)
         return cls(
             project=m.group("project"),
             version=m.group("version"),
@@ -109,7 +109,7 @@ class WheelFilename:
         )
 
 
-class InvalidFilenameError(ValueError):
+class ParseError(ValueError):
     """Raised when an invalid wheel filename is encountered"""
 
     def __init__(self, filename: str) -> None:

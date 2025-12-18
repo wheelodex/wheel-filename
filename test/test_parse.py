@@ -1,6 +1,6 @@
 import os.path
 import pytest
-from wheel_filename import InvalidFilenameError, WheelFilename
+from wheel_filename import ParseError, WheelFilename
 
 
 @pytest.mark.parametrize(
@@ -297,14 +297,14 @@ def test_parse_wheel_filename_path() -> None:
     ],
 )
 def test_bad_filename(filename: str) -> None:
-    with pytest.raises(InvalidFilenameError) as excinfo:
+    with pytest.raises(ParseError) as excinfo:
         WheelFilename.parse(filename)
     assert excinfo.value.filename == filename
     assert str(excinfo.value) == f"Invalid wheel filename: {filename!r}"
 
 
 def test_bad_path() -> None:
-    with pytest.raises(InvalidFilenameError) as excinfo:
+    with pytest.raises(ParseError) as excinfo:
         WheelFilename.parse(os.path.join("dist", "foo-0.1.whl"))
     assert excinfo.value.filename == "foo-0.1.whl"
     assert str(excinfo.value) == "Invalid wheel filename: 'foo-0.1.whl'"

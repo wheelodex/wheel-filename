@@ -5,6 +5,7 @@ v2.0.0 (in development)
 - Changed `ParsedWheelFilename` from a namedtuple to a dataclass
 - **Breaking**: Renamed `ParsedWheelFilename` to `WheelFilename`
 - **Breaking**: Renamed `parse_wheel_filename()` to `WheelFilename.parse()`
+- **Breaking**: Renamed `InvalidFilenameError` to `ParseError`
 
 v1.4.2 (2024-12-01)
 -------------------
