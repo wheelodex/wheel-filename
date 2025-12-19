@@ -1,10 +1,6 @@
 import os.path
 import pytest
-from wheel_filename import (
-    InvalidFilenameError,
-    ParsedWheelFilename,
-    parse_wheel_filename,
-)
+from wheel_filename import ParseError, WheelFilename
 
 
 @pytest.mark.parametrize(
@@ -12,7 +8,7 @@ from wheel_filename import (
     [
         (
             "astrocats-0.3.2-universal-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="astrocats",
                 version="0.3.2",
                 build=None,
@@ -23,7 +19,7 @@ from wheel_filename import (
         ),
         (
             "bencoder.pyx-1.1.2-pp226-pp226-win32.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="bencoder.pyx",
                 version="1.1.2",
                 build=None,
@@ -34,7 +30,7 @@ from wheel_filename import (
         ),
         (
             "brotlipy-0.1.2-pp27-none-macosx_10_10_x86_64.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="brotlipy",
                 version="0.1.2",
                 build=None,
@@ -45,7 +41,7 @@ from wheel_filename import (
         ),
         (
             "brotlipy-0.3.0-pp226-pp226u-macosx_10_10_x86_64.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="brotlipy",
                 version="0.3.0",
                 build=None,
@@ -56,7 +52,7 @@ from wheel_filename import (
         ),
         (
             "carbonara_archinfo-7.7.9.14.post1-py2-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="carbonara_archinfo",
                 version="7.7.9.14.post1",
                 build=None,
@@ -67,7 +63,7 @@ from wheel_filename import (
         ),
         (
             "coremltools-0.3.0-py2.7-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="coremltools",
                 version="0.3.0",
                 build=None,
@@ -79,7 +75,7 @@ from wheel_filename import (
         (
             "cvxopt-1.2.0-001-cp34-cp34m-macosx_10_6_intel.macosx_10_9_intel"
             ".macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="cvxopt",
                 version="1.2.0",
                 build="001",
@@ -96,7 +92,7 @@ from wheel_filename import (
         ),
         (
             "django_mbrowse-0.0.1-10-py2-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="django_mbrowse",
                 version="0.0.1",
                 build="10",
@@ -107,7 +103,7 @@ from wheel_filename import (
         ),
         (
             "efilter-1!1.2-py2-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="efilter",
                 version="1!1.2",
                 build=None,
@@ -118,7 +114,7 @@ from wheel_filename import (
         ),
         (
             "line.sep-0.2.0.dev1-py2.py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="line.sep",
                 version="0.2.0.dev1",
                 build=None,
@@ -129,7 +125,7 @@ from wheel_filename import (
         ),
         (
             "mayan_edms-1.1.0-1502100955-py2-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="mayan_edms",
                 version="1.1.0",
                 build="1502100955",
@@ -140,7 +136,7 @@ from wheel_filename import (
         ),
         (
             "mxnet_model_server-1.0a5-20180816-py2.py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="mxnet_model_server",
                 version="1.0a5",
                 build="20180816",
@@ -151,7 +147,7 @@ from wheel_filename import (
         ),
         (
             "pip-18.0-py2.py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="pip",
                 version="18.0",
                 build=None,
@@ -162,7 +158,7 @@ from wheel_filename import (
         ),
         (
             "polarTransform-2-1.0.0-py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="polarTransform",
                 version="2",
                 build="1.0.0",
@@ -174,7 +170,7 @@ from wheel_filename import (
         (
             "psycopg2-2.7.5-cp37-cp37m-macosx_10_6_intel.macosx_10_9_intel"
             ".macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="psycopg2",
                 version="2.7.5",
                 build=None,
@@ -191,7 +187,7 @@ from wheel_filename import (
         ),
         (
             "pyinterval-1.0.0-0-cp27-none-win32.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="pyinterval",
                 version="1.0.0",
                 build="0",
@@ -202,7 +198,7 @@ from wheel_filename import (
         ),
         (
             "pypi_simple-0.1.0.dev1-py2.py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="pypi_simple",
                 version="0.1.0.dev1",
                 build=None,
@@ -213,7 +209,7 @@ from wheel_filename import (
         ),
         (
             "PyQt3D-5.7.1-5.7.1-cp34.cp35.cp36-abi3-macosx_10_6_intel.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="PyQt3D",
                 version="5.7.1",
                 build="5.7.1",
@@ -224,7 +220,7 @@ from wheel_filename import (
         ),
         (
             "qypi-0.4.1-py3-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="qypi",
                 version="0.4.1",
                 build=None,
@@ -235,7 +231,7 @@ from wheel_filename import (
         ),
         (
             "SimpleSteem-1.1.9-3.0-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="SimpleSteem",
                 version="1.1.9",
                 build=None,
@@ -246,7 +242,7 @@ from wheel_filename import (
         ),
         (
             "simple_workflow-0.1.47-pypy-none-any.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="simple_workflow",
                 version="0.1.47",
                 build=None,
@@ -257,7 +253,7 @@ from wheel_filename import (
         ),
         (
             "tables-3.4.2-3-cp27-cp27m-manylinux1_i686.whl",
-            ParsedWheelFilename(
+            WheelFilename(
                 project="tables",
                 version="3.4.2",
                 build="3",
@@ -268,15 +264,15 @@ from wheel_filename import (
         ),
     ],
 )
-def test_parse_wheel_filename(filename: str, expected: ParsedWheelFilename) -> None:
-    parsed = parse_wheel_filename(filename)
+def test_parse_wheel_filename(filename: str, expected: WheelFilename) -> None:
+    parsed = WheelFilename.parse(filename)
     assert parsed == expected
     assert str(parsed) == filename
 
 
 def test_parse_wheel_filename_path() -> None:
-    parsed = parse_wheel_filename("dist/foo-1.0-py3-none-any.whl")
-    assert parsed == ParsedWheelFilename(
+    parsed = WheelFilename.parse("dist/foo-1.0-py3-none-any.whl")
+    assert parsed == WheelFilename(
         project="foo",
         version="1.0",
         build=None,
@@ -301,14 +297,14 @@ def test_parse_wheel_filename_path() -> None:
     ],
 )
 def test_bad_filename(filename: str) -> None:
-    with pytest.raises(InvalidFilenameError) as excinfo:
-        parse_wheel_filename(filename)
+    with pytest.raises(ParseError) as excinfo:
+        WheelFilename.parse(filename)
     assert excinfo.value.filename == filename
     assert str(excinfo.value) == f"Invalid wheel filename: {filename!r}"
 
 
 def test_bad_path() -> None:
-    with pytest.raises(InvalidFilenameError) as excinfo:
-        parse_wheel_filename(os.path.join("dist", "foo-0.1.whl"))
+    with pytest.raises(ParseError) as excinfo:
+        WheelFilename.parse(os.path.join("dist", "foo-0.1.whl"))
     assert excinfo.value.filename == "foo-0.1.whl"
     assert str(excinfo.value) == "Invalid wheel filename: 'foo-0.1.whl'"

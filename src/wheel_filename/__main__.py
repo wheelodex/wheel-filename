@@ -1,8 +1,9 @@
 from __future__ import annotations
 import argparse
+from dataclasses import asdict
 import json
 import sys
-from . import InvalidFilenameError, __version__, parse_wheel_filename
+from . import ParseError, WheelFilename, __version__
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -13,11 +14,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("filename")
     args = parser.parse_args(argv)
     try:
-        pwf = parse_wheel_filename(args.filename)
-    except InvalidFilenameError as e:
+        pwf = WheelFilename.parse(args.filename)
+    except ParseError as e:
         print(f"wheel-filename: {e}", file=sys.stderr)
         return 1
-    print(json.dumps(pwf._asdict(), indent=4))
+    print(json.dumps(asdict(pwf), indent=4))
     return 0
 
 
