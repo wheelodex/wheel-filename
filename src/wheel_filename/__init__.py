@@ -24,7 +24,7 @@ import os
 import os.path
 import re
 
-__version__ = "2.0.0.dev1"
+__version__ = "2.0.0"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
