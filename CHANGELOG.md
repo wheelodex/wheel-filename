@@ -1,5 +1,5 @@
-v2.1.0 (in development)
------------------------
+v2.1.0 (2025-12-20)
+-------------------
 - Added `build_tuple`, `build_leading` and `build_trailing` properties to
   `WheelFilename`
 
