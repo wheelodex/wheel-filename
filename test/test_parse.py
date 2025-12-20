@@ -308,3 +308,27 @@ def test_bad_path() -> None:
         WheelFilename.parse(os.path.join("dist", "foo-0.1.whl"))
     assert excinfo.value.filename == "foo-0.1.whl"
     assert str(excinfo.value) == "Invalid wheel filename: 'foo-0.1.whl'"
+
+
+@pytest.mark.parametrize(
+    "filename,bint,bstr",
+    [
+        ("astrocats-0.3.2-universal-none-any.whl", None, None),
+        ("polarTransform-2-1.0.0-py3-none-any.whl", 1, ".0.0"),
+        (
+            "cvxopt-1.2.0-001-cp34-cp34m-macosx_10_6_intel.macosx_10_9_intel"
+            ".macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl",
+            1,
+            "",
+        ),
+        ("mayan_edms-1.1.0-1502100955-py2-none-any.whl", 1502100955, ""),
+    ],
+)
+def test_build_parts(filename: str, bint: int | None, bstr: str | None) -> None:
+    wf = WheelFilename.parse(filename)
+    assert wf.build_leading == bint
+    assert wf.build_trailing == bstr
+    if bint is not None:
+        assert wf.build_tuple == (bint, bstr)
+    else:
+        assert wf.build_tuple == ()

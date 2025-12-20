@@ -1,3 +1,8 @@
+v2.1.0 (in development)
+-----------------------
+- Added `build_tuple`, `build_leading` and `build_trailing` properties to
+  `WheelFilename`
+
 v2.0.0 (2025-12-19)
 -------------------
 - Support Python 3.14

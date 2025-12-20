@@ -24,7 +24,7 @@ import os
 import os.path
 import re
 
-__version__ = "2.0.0"
+__version__ = "2.1.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "wheel-filename@varonathe.org"
 __license__ = "MIT"
@@ -82,6 +82,46 @@ class WheelFilename:
             for abi in self.abi_tags:
                 for plat in self.platform_tags:
                     yield "-".join([py, abi, plat])
+
+    @property
+    def build_tuple(self) -> tuple[int, str] | tuple[()]:
+        """
+        Returns the build tag as a tuple for use in sorting.  If `self.build`
+        is non-`None`, this is ``(self.build_leading, self.build_trailing)``;
+        otherwise, it is the empty tuple.
+        """
+        if self.build is not None:
+            m = re.match(r"[0-9]+", self.build)
+            assert m
+            return (int(m[0]), self.build[m.end() :])
+        else:
+            return ()
+
+    @property
+    def build_leading(self) -> int | None:
+        """
+        If `self.build` is non-`None`, returns the leading integer portion of
+        the build tag converted to an integer; otherwise, returns `None`
+        """
+        if self.build is not None:
+            m = re.match(r"[0-9]+", self.build)
+            assert m
+            return int(m[0])
+        else:
+            return None
+
+    @property
+    def build_trailing(self) -> str | None:
+        """
+        If `self.build` is non-`None`, returns the part of the build tag after
+        the leading integer portion; otherwise, returns `None`
+        """
+        if self.build is not None:
+            m = re.match(r"[0-9]+", self.build)
+            assert m
+            return self.build[m.end() :]
+        else:
+            return None
 
     @classmethod
     def parse(

@@ -91,6 +91,19 @@ API
    ``build: str | None``
       The wheel's build tag (``None`` if not defined)
 
+   ``build_tuple: tuple[int, str] | tuple[()]``
+      The build tag as a tuple for use in sorting.  If ``build`` is
+      non-``None``, this is ``(build_leading, build_trailing)``; otherwise, it
+      is the empty tuple.
+
+   ``build_leading: int | None``
+      If ``build`` is non-``None``, this is the leading integer portion of the
+      build tag converted to an ``int``; otherwise it is ``None``
+
+   ``build_trailing: str | None``
+      If ``build`` is non-``None``, this is the part after the leading integer
+      portion of the build tag; otherwise it is ``None``
+
    ``python_tags: list[str]``
       A list of Python tags for the wheel
 
