@@ -1,3 +1,7 @@
+v2.2.0 (in development)
+-----------------------
+- Support Python 3.15
+
 v2.1.0 (2025-12-20)
 -------------------
 - Added `build_tuple`, `build_leading` and `build_trailing` properties to
